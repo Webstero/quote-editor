@@ -2,7 +2,8 @@ require "application_system_test_case"
 
 class QuotesTest < ApplicationSystemTestCase
   setup do
-    @quote = Quote.ordered.first # Reference to the first fixture quote
+    login_as users(:accountant)
+    @quote = quotes(:first)
   end
 
   # test "Creating a new quote" do
@@ -67,6 +68,7 @@ class QuotesTest < ApplicationSystemTestCase
     assert_text @quote.name
 
     click_on "Delete", match: :first
+    visit quotes_path
     assert_no_text @quote.name
   end
 end
