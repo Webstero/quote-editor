@@ -64,10 +64,12 @@ class QuotesTest < ApplicationSystemTestCase
   end
 
   test "Destroying a quote" do
+    binding.irb
     visit quotes_path
     assert_text @quote.name
 
     click_on "Delete", match: :first
+    binding.irb
     visit quotes_path
     assert_no_text @quote.name
   end
